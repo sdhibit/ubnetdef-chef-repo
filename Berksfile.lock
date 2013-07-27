@@ -1,0 +1,39 @@
+{
+  "sources": {
+    "vim": {
+      "locked_version": "1.0.2"
+    },
+    "git": {
+      "locked_version": "2.5.2"
+    },
+    "openssh": {
+      "locked_version": "1.2.0"
+    },
+    "mumble": {
+      "locked_version": "0.1.0",
+      "git": "https://github.com/sdhibit/chef-mumble.git",
+      "ref": "afd3568040b3aca6c3fbce932137511ca10b18a6"
+    },
+    "dmg": {
+      "locked_version": "1.1.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.0"
+    },
+    "yum": {
+      "locked_version": "2.3.0"
+    },
+    "windows": {
+      "locked_version": "1.10.0"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "runit": {
+      "locked_version": "1.1.6"
+    },
+    "iptables": {
+      "locked_version": "0.12.0"
+    }
+  }
+}

@@ -4,18 +4,25 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.hostname = 'mumble-freebsd-server'
   config.vm.box = "freebsd-91"
-
   config.vm.guest = :freebsd
+  config.omnibus.chef_version = :latest
+  config.ssh.max_tries = 40
+  config.ssh.timeout = 120
+  config.berkshelf.enabled = true
 
-  config.vm.network :public_network, :nictype => 'virtio', :adapter => 1
-
+  config.vm.provision :chef_solo do |chef|
+    chef.run_list = ["recipe[vim]"]
+  end
+  #config.vm.network :public_network, :nictype => 'virtio', :adapter => 1
   #config.vm.share_folder("v-root", "/tornado", "../../..", :nfs => true)
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
