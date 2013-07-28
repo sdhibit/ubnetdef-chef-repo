@@ -18,7 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.max_tries = 40
   config.ssh.timeout = 120
-  config.ssh.private_key_path = "/Users/sdhibit/.ssh/id_rsa"
+  #config.ssh.private_key_path = "/Users/sdhibit/.ssh/id_rsa"
+  config.ssh.private_key_path = "/Users/sdhibit/veewee/validation/vagrant-private.key"
   #config.ssh.username = "fuckyou"
 
   config.berkshelf.enabled = false
@@ -28,7 +29,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :chef_solo do |chef|
     chef.nfs = true
     #chef.run_list = ["recipe[git]"]
-    chef.add_recipe "git"
+    chef.add_recipe "ports"
+    #chef.add_recipe "git"
+    #chef.add_recipe "vim"
     #chef.add_recipe "openssh"  
 end
   #config.vm.network :public_network, :nictype => 'virtio', :adapter => 1
@@ -71,6 +74,7 @@ end
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
+  #   vb.customize ["modifyvm", :id, "--cpus", "4"]
   # end
   #
   # View the documentation for the provider you're using for more
