@@ -15,13 +15,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "freebsd-91"
   config.vm.guest = :freebsd
   config.omnibus.chef_version = :latest
+
   config.ssh.max_tries = 40
   config.ssh.timeout = 120
-  config.berkshelf.enabled = true
+  config.ssh.private_key_path = "/Users/sdhibit/.ssh/id_rsa"
+  #config.ssh.username = "fuckyou"
+
+  config.berkshelf.enabled = false
+  config.vm.network :private_network, ip: "192.168.56.3"
+  config.vm.synced_folder ".", "/vagrant", :nfs => true
 
   config.vm.provision :chef_solo do |chef|
-    chef.run_list = ["recipe[vim]"]
-  end
+    chef.nfs = true
+    #chef.run_list = ["recipe[git]"]
+    chef.add_recipe "git"
+    #chef.add_recipe "openssh"  
+end
   #config.vm.network :public_network, :nictype => 'virtio', :adapter => 1
   #config.vm.share_folder("v-root", "/tornado", "../../..", :nfs => true)
   # The url from where the 'config.vm.box' box will be fetched if it
